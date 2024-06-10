@@ -11,7 +11,8 @@
 
     - name: fetching details of database catalog
       cloudera.cloud.dw_database_catalog_info:
-        cluster_id: "{{ dwcluster['clusters'][0]['id'] }}"
+        #cluster_id: "{{ dwcluster['clusters'][0]['id'] }}"
+      cluster_id: "{{ dwcluster | default({'clusters': [{'id': 'N/A'}]}) | selectattr('clusters', 'defined') | map(attribute='id') | first | default('N/A') }}"
       register: dbcatalogstatus
 
     - name: fetching data visualization clusters
