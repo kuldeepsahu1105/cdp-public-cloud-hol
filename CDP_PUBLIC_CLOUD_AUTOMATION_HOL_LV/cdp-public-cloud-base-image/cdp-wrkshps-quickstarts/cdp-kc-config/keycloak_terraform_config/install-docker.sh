@@ -19,3 +19,5 @@ docker exec keycloak /opt/keycloak/bin/kcadm.sh update realms/master -s sslRequi
 #docker cp /tmp/cloudera-wshps.png keycloak:/opt/jboss/keycloak/themes/keycloak/login/resources/img/keycloak-bg.png
 #docker cp /tmp/cloudera-newco-wshps.png keycloak:/opt/jboss/keycloak/themes/keycloak/login/resources/img/keycloak-logo-text.png
 
+
+

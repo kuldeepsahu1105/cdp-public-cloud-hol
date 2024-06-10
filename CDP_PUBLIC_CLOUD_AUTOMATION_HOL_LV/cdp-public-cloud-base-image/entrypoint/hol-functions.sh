@@ -188,7 +188,28 @@ aws_prereq () {
                     echo "*************************************************************************************************************************************************************************************************"
                     exit
                fi      
-   
+       aws_region=ap-southeast-1
+# Fetch S3 bucket limit
+s3_limit=$(aws service-quotas list-aws-default-service-quotas \
+    --service-code s3 \
+    --region "$aws_region" | \
+    jq -r '.Quotas[] | select(.QuotaName == "General purpose buckets") | .Value | tonumber | floor')
+
+# Fetch the number of existing S3 buckets
+s3_used=$(aws s3api list-buckets --output json --region "$aws_region" | jq -r '.Buckets | length')
+
+# Check if the number of existing buckets is less than the limit
+if [ "$s3_limit" -gt "$s3_used" ]; then
+    echo "Check Available S3 Buckets: Passed"
+else
+    echo "************************************************************************************************************"
+    echo "* Fatal !! Can't Continue: The S3 bucket creation limit has been reached in the $aws_region region.     *"
+    echo "* Either select another region in 'configfile' or remove unused S3 buckets.                                *"
+    echo "************************************************************************************************************"
+    # Exit if you want the script to terminate in this case
+    # exit 1
+fi   
+
 }
 #---------------------------------------------------------------------------------------------------------------------#
 # Function to validate if resources are already present on AWS.
