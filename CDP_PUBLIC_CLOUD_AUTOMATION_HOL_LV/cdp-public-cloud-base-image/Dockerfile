@@ -23,12 +23,17 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean && \
     rm -rf /var/cache/apt/* && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
     \
     # Install Python packages.
+    pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir \
-    awscli cdpcli setuptools_rust ansible \
+    awscli cdpcli setuptools_rust ansible ansible-core jmespath==1.0.1 \
     && \
+    pip3 install --no-cache-dir git+https://github.com/cloudera-labs/cdpy@main#egg=cdpy && \
     \
+    ansible-galaxy collection install community.general && \
+    ansible-galaxy collection install git+https://github.com/cloudera-labs/cloudera.cloud.git,devel && \
     # Install latest Terraform version.
     wget -O /tmp/terraform.zip https://releases.hashicorp.com/terraform/${LATEST_TERRAFORM_VERSION}/terraform_${LATEST_TERRAFORM_VERSION}_linux_amd64.zip && \
     unzip /tmp/terraform.zip -d /usr/local/bin/ && \
