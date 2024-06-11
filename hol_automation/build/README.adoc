@@ -107,12 +107,12 @@ The Docker image will be available at Docker Hub. Once the Docker is installed, 
 [.shell]
 ----
 
-docker tag hol:3.0 clouderapartners/cdp-public-cloud-hol-provisioner:latest
+docker tag hol:latest clouderapartners/cdp-public-cloud-hol-provisioner:latest
 docker push clouderapartners/cdp-public-cloud-hol-provisioner:latest
 
 ----
 
-The overall time for provisioning is nearly 70-100 minutes. 
+The overall time for provisioning is nearly 80-150 minutes (Total Time = Time Reqd for DataLake Provisioning + Time Reqd for CDE and/or CDW Provisioning). 
 
 ---
 
@@ -136,13 +136,13 @@ image::images/out_put_kc.png[during_process,650,300]
 
 
 |Environment
-|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
+|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-aw-cdp-env
 
 |Admin User Group
-|<WORKSHOP_NAME>-cdp-admin-group; e.g: accn-workshp-cdp-admin-group
+|<WORKSHOP_NAME>-aw-cdp-admin-group; e.g: accn-workshp-aw-cdp-admin-group
 
 |User Group
-|<WORKSHOP_NAME>-cdp-user-group; e.g: accn-workshp-cdp-user-group
+|<WORKSHOP_NAME>-aw-cdp-user-group; e.g: accn-workshp-aw-cdp-user-group
 
 |===
 
@@ -159,7 +159,7 @@ data visualization cluster of **large** size.
 
 
 |Activated CDW Environment
-|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
+|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-aw-cdp-env
 
 |Database Catalog
 |
@@ -196,10 +196,10 @@ Based on number of workshop users defined in configfile the provisioner will tak
 
 ---
 
-The provisioned CDP environment will have all the Keycloak users created in CDP and assigned to the *-cdp-user-group and synched to FreeIpa.
+The provisioned CDP environment will have all the Keycloak users created in CDP and assigned to the *-aw-cdp-user-group and synched to FreeIpa.
 
 [NOTE]
-During provisioning the process creates files and hidden folder inside the local userconfig folder. Do not delete any
+During provisioning, the process creates files and hidden folder inside the local userconfig folder. Do not delete any
 files and folder as these are required for destroying the stack.
 
 ---
