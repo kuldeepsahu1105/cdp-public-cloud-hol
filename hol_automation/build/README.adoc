@@ -188,7 +188,7 @@ Based on number of workshop users defined in configfile the provisioner will tak
 |<WORKSHOP_NAME>-cde; e.g : accn-workshp-cde
 
 
-|Virtual Clusters)
+|Virtual Clusters
 |<WORKSHOP_NAME>-cde-vc-<number>; e.g: accn-workshp-cde-vc-01
 
 

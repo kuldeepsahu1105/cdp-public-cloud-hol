@@ -162,11 +162,14 @@ Download the  **configuration/configfile** and place it inside the above created
 Start editing the **configfile** with the help of editor of your choice. **Don't add any quotes(single or double) in values and no 'new line' after the last entry in the file.** Refer to below table for defining
 values of the parameters.
 
-    Make Sure, you are providing a unique name for the variables i.e. KEYCLOAK_SERVER_NAME, WORKSHOP_NAME, KEYCLOAK_SECURITY_GROUP_NAME etc. else there are chances to break in-between of execution of automation, in case there is already a resource present on account, with the same names.
+[NOTE]
+ Make Sure, you are providing a unique name for the variables i.e. KEYCLOAK_SERVER_NAME, WORKSHOP_NAME, KEYCLOAK_SECURITY_GROUP_NAME etc. else there are chances to break in-between of execution of automation, in case there is already a resource present on account, with the same names.
 
-    Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets).
+[NOTE]
+ Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets).
 
-    Make sure that total number of IAM Groups present in your CDP tenant, in which you are trying to deploy using automation, are less than 48 (i.e. default limit is 50 Groups and qautomation will create 2 more).
+[NOTE]
+ Make sure that total number of IAM Groups present in your CDP tenant, in which you are trying to deploy using automation, are less than 48 (i.e. default limit is 50 Groups and qautomation will create 2 more).
 
 [%header,cols="1,1,1"]
 |===
@@ -354,7 +357,7 @@ Based on number of workshop users defined in configfile the provisioner will tak
 |<WORKSHOP_NAME>-cde; e.g : accn-workshp-cde
 
 
-|Virtual Clusters)
+|Virtual Clusters
 |<WORKSHOP_NAME>-cde-vc-<number>; e.g: accn-workshp-cde-vc-01
 
 
