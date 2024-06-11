@@ -7,7 +7,7 @@ Email: **ksahu@cloudera.com**
 
 Author: **Avanish Tiwari**
 
-Email: **aktiwaricloudera.com**
+Email: **aktiwari@cloudera.com**
 
 
 
@@ -68,7 +68,7 @@ cd hol_automation/build
 [.shell]
 ----
 
-#docker build . -t <reponame>/<imagename>:<tagname>
+# docker build . -t <reponame>/<imagename>:<tagname>
 docker build . -t hol:latest
 
 ----
@@ -82,7 +82,7 @@ docker images
 
 ---
 
-=== Step 3: Login to Docker Hub.
+=== Step 3: Login to Docker Hub
 The docker image is available at Docker Hub. Once the Docker is installed and ready to use pull the **cdp-public-cloud-hol-provisioner:latest** image by executing below command.
 
 
@@ -100,7 +100,7 @@ Login Succeeded!
 
 ---
 
-=== Step 4: Tag and Push the Docker Image.
+=== Step 4: Tag and Push the Docker Image
 The Docker image will be available at Docker Hub. Once the Docker is installed, and you are logged in to Docker Hub, push the **cdp-public-cloud-hol-provisioner:latest** image by executing below command.
 
 
@@ -112,7 +112,7 @@ docker push clouderapartners/cdp-public-cloud-hol-provisioner:latest
 
 ----
 
-The overall time for provisioning is nearly 30-35 minutes. 
+The overall time for provisioning is nearly 70-100 minutes. 
 
 ---
 
