@@ -8,17 +8,20 @@
       cloudera.cloud.dw_cluster_info:
         env: "{{ cdp_env_name }}"
       register: dwcluster
+      ignore_errors: true
 
     - name: fetching details of database catalog
       cloudera.cloud.dw_database_catalog_info:
         #cluster_id: "{{ dwcluster['clusters'][0]['id'] }}"
         cluster_id: "{{ dwcluster.get('clusters', [{}])[0].get('id') }}"
       register: dbcatalogstatus
+      ignore_errors: true
 
     - name: fetching data visualization clusters
       ansible.builtin.command: |
         cdp dw list-data-visualizations --cluster-id "{{ dwcluster.get('clusters', [{}])[0].get('id') }}"
       register: datavizs
+      ignore_errors: true
 
     - name: removing data visualization cluster
       ansible.builtin.command: |
@@ -29,17 +32,23 @@
       delay: 30
       ignore_errors: true
 
+    - name: Debugging dwcluster and dbcatalogstatus
+      debug:
+        msg: "dwcluster: {{ dwcluster }}, dbcatalogstatus: {{ dbcatalogstatus }}"
+
     - name: fetching all virtual warehouses
       cloudera.cloud.dw_virtual_warehouse_info:
         cluster_id: "{{ dwcluster.get('clusters', [{}])[0].get('id') }}"
         catalog_id: "{{ dbcatalogstatus.get('database_catalogs', [{}])[0].get('id') }}"
       register: vwarehouses
+      ignore_errors: true
 
     - name: extract the virtual warehouse id
       ansible.builtin.set_fact:
         vw_ids: "{{ vwarehouses['virtual_warehouses'] | community.general.json_query(query_string) | default([]) }}"
       vars:
         query_string: "[].{id:id}"
+      ignore_errors: true
 
     - name: removing virtual warehouses
       cloudera.cloud.dw_virtual_warehouse:
@@ -57,6 +66,7 @@
         env: "{{ cdp_env_name }}"
         wait: False
         state: absent
+      ignore_errors: true
     
     - name: deactivating cdw cluster
       cloudera.cloud.dw_cluster_info:
@@ -65,3 +75,4 @@
       until: deactivatedw['clusters'] | length == 0
       retries: 50
       delay: 30
+      ignore_errors: true

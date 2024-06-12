@@ -165,12 +165,6 @@ values of the parameters.
 [NOTE]
  Make Sure, you are providing a unique name for the variables i.e. KEYCLOAK_SERVER_NAME, WORKSHOP_NAME, KEYCLOAK_SECURITY_GROUP_NAME etc. else there are chances to break in-between of execution of automation, in case there is already a resource present on account, with the same names.
 
-[NOTE]
- Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets).
-
-[NOTE]
- Make sure that total number of IAM Groups present in your CDP tenant, in which you are trying to deploy using automation, are less than 48 (i.e. default limit is 50 Groups and qautomation will create 2 more).
-
 [%header,cols="1,1,1"]
 |===
 |Parameter
@@ -239,6 +233,18 @@ Place the **AWS_KEY_PAIR.pem** file downloaded in **Step 2** inside userconfig f
 === Step 5: Start Provisioning Stack
 Once the configfile is created as outlined in Step 4 . The provisioning of infrastructure in interactive mode can be started by executing below command.
 
+---
+
+[NOTE]
+ Make sure that total number of IAM Groups present in your CDP tenant, in which you are trying to deploy using automation, are less than 48 (i.e. default limit is 50 Groups and automation will create 2 more).
+
+---
+
+[NOTE]
+ Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets).
+
+---
+
 **For Mac Users:**
 
 [.shell]
@@ -276,7 +282,7 @@ docker ps
 To get the logs:
 [.shell]
 ----
-docker logs <CONTINER_ID> OR <CONTAINER_NAME>
+docker logs -f <CONTINER_ID> OR <CONTAINER_NAME>
 
 ----
 
@@ -305,13 +311,13 @@ image::build/images/out_put_kc.png[during_process,650,300]
 
 
 |Environment
-|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
+|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-cdp-env
 
 |Admin User Group
-|<WORKSHOP_NAME>-cdp-admin-group; e.g: accn-workshp-cdp-admin-group
+|<WORKSHOP_NAME>-aw-cdp-admin-group; e.g: accn-workshp-aw-cdp-admin-group
 
 |User Group
-|<WORKSHOP_NAME>-cdp-user-group; e.g: accn-workshp-cdp-user-group
+|<WORKSHOP_NAME>-aw-cdp-user-group; e.g: accn-workshp-aw-cdp-user-group
 
 |===
 
@@ -328,7 +334,7 @@ data visualization cluster of **large** size.
 
 
 |Activated CDW Environment
-|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
+|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-aw-cdp-env
 
 |Database Catalog
 |
@@ -425,7 +431,7 @@ docker ps
 To get the logs:
 [.shell]
 ----
-docker logs <CONTINER_ID> OR <CONTAINER_NAME>
+docker logs -f <CONTINER_ID> OR <CONTAINER_NAME>
 
 ----
 
