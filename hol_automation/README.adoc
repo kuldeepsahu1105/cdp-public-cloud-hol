@@ -241,7 +241,7 @@ Once the configfile is created as outlined in Step 4 . The provisioning of infra
 ---
 
 [NOTE]
- Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets).
+ Though, there are pre-checks configured for S3 buckets count and VPC, EIP Quotas in the provided region. Please make sure from your side as well that enough quotas are available in the region to consume and total number of S3 buckets present in your AWS account are less than 99 (i.e. default limit is 100 buckets, 1 more bucket will be created by the automation).
 
 ---
 
