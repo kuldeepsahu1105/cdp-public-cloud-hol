@@ -245,7 +245,7 @@ Once the configfile is created as outlined in Step 4 . The provisioning of infra
 
 ---
 
-**For Mac Users:**
+**For Mac/Linux Users:**
 
 [.shell]
 ----
