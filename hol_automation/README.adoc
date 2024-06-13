@@ -311,7 +311,7 @@ image::build/images/out_put_kc.png[during_process,650,300]
 
 
 |Environment
-|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-cdp-env
+|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
 
 |Admin User Group
 |<WORKSHOP_NAME>-aw-cdp-admin-group; e.g: accn-workshp-aw-cdp-admin-group
@@ -334,7 +334,7 @@ data visualization cluster of **large** size.
 
 
 |Activated CDW Environment
-|<WORKSHOP_NAME>-aw-cdp-env; e.g : accn-workshp-aw-cdp-env
+|<WORKSHOP_NAME>-cdp-env; e.g : accn-workshp-cdp-env
 
 |Database Catalog
 |
