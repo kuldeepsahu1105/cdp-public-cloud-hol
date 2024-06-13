@@ -67,6 +67,21 @@
         wait: False
         state: absent
       ignore_errors: true
+
+    - name: Getting CDW cluster Status
+      cloudera.cloud.dw_cluster_info:
+        env: "{{ cdp_env_name }}"
+      register: dw_cluster_status
+      until: ( dw_cluster_status['clusters'] | length == 0 ) or ( dw_cluster_status['clusters'][0]['status'] in ["Deleting","Running","Error","Failed"] )
+
+    - name: Check and print cluster status
+      debug:
+        msg: "Cluster is in {{ dw_cluster_status['clusters'][0]['status'] }} State"
+
+    - name: Fail task on Cluster Deletion Failed
+      fail:
+        msg: "Cluster Creation Got Failed."
+      when: dw_cluster_status['clusters'][0]['status'] in ["Error","Failed"]
     
     - name: deactivating cdw cluster
       cloudera.cloud.dw_cluster_info:

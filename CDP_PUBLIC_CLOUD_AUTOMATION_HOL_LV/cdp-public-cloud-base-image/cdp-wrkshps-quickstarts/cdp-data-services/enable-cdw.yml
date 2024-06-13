@@ -7,15 +7,31 @@
     - name: activating CDW cluster
       cloudera.cloud.dw_cluster:
         env: "{{ cdp_env_name }}"
-        state: present
         aws_lb_subnets: "{{ env_public_subnet if env_public_subnet is defined and env_public_subnet != '' else env_private_subnet }}"
         aws_worker_subnets: "{{ env_private_subnet if env_private_subnet is defined and env_private_subnet != '' else env_public_subnet }}"
         wait: False
       register: dwcluster
-      until: dwcluster.get('cluster', {}).get('status') == "Running"
-      #until: dwcluster['cluster']['status'] == "Running"
-      retries: 50
+
+    - name: Check and print cluster status
+      debug:
+        msg: "Cluster is in {{ dwcluster['cluster']['status'] }} State. Usually it takes around ~18 minutes, if there are no Errors in the execution."
+
+    - name: Getting CDW cluster Status
+      cloudera.cloud.dw_cluster_info:
+        env: "{{ cdp_env_name }}"
+      register: dw_cluster_status
+      until: dw_cluster_status['clusters'][0]['status'] in ["Running","Error","Failed"]
+      retries: 40
       delay: 30
+
+    - name: Check and print cluster status
+      debug:
+        msg: "Cluster is in {{ dw_cluster_status['clusters'][0]['status'] }} State"
+    
+    - name: Fail task on Cluster Creation Failed
+      fail:
+        msg: "Cluster Creation Got Failed."
+      when: dw_cluster_status['clusters'][0]['status'] in ["Error","Failed"]
 
     - name: waiting for  default database catalog to be running
       cloudera.cloud.dw_database_catalog_info:
